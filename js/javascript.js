@@ -1,3 +1,6 @@
+$(function(){
+	console.log("DOM loaded - you can have fun");
+});
 //alternative declaration
 
 // var span = $("span");
