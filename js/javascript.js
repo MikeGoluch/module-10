@@ -3,14 +3,38 @@ $(function(){
 });
 //alternative declaration
 
-// var span = $("span");
-//span.each(function(index, element) {
-//     if(index % 2 === 0) {
-//         $(element).css("color", "red");
-//     }
-// });
+var ignored = ["first", "second", "fourth"];
 
-$("span:even").css("color", "red");
+console.log(ignored);
+var arrayId = $("span").map(function() {
+    return this.id;
+}).get().join();
+
+var arrayIdString = arrayId.split(",");
+console.log(arrayIdString);
+
+console.log(arrayId);
+
+function diffArray(array1, array2) {
+    var concatArray = array1.concat(array2);
+    return concatArray.filter(function(value, index, array) {
+        if(array.slice(index+1).indexOf(value) === -1 && array.slice(0, index).indexOf(value) === -1) {
+            return value;
+        }
+    });
+}
+console.log(diffArray(ignored, arrayIdString));
+var arrayIdStringWithoutArrayIgnoredId = diffArray(ignored, arrayIdString);
+
+console.log(arrayIdString === arrayIdStringWithoutArrayIgnoredId);
+var span = $("span");
+span.each(function(index, element) {
+    if(arrayIdString === arrayIdStringWithoutArrayIgnoredId) {
+        $(element).css("color", "red");
+    }
+});
+
+// $("span").css("color", "red");
 
 var paragraphs = $("p:odd");
 paragraphs.each(function(index, element) {
