@@ -9,18 +9,13 @@ var ignored = ["first", "second", "fourth"];
 var span = $("span");
 span.each(function(index, element) {
     var spanId = $(this).attr("id");
-    var stringIdArray = spanId.split(",");
-    console.log(stringIdArray);
-        for(var i = 0; i < stringIdArray.length; i++) {
-            for(var j = 0; j < ignored.length; j++) {
-                if(stringIdArray[i] === ignored[j]) {
-                    console.log(stringIdArray[i] === ignored[j]);
-                    $(element).css("color", "red");
-                }
-            }
-        }
+    console.log("idSpanName", spanId);
+    var indexOfId = ignored.indexOf(spanId);
+    console.log("indexOfId", indexOfId);
+    if (indexOfId === -1) {
+        $(element).css("color", "red");
+    }
 });
-
 
 // $("span").css("color", "red");
 
@@ -33,6 +28,8 @@ paragraphs.each(function(index, element) {
 $("button").click(function() {
     alert($(this).attr("data-tmp"));
 })
-
 });
+
+
+
 
